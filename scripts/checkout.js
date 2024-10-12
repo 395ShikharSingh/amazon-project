@@ -16,7 +16,7 @@ cart.forEach((cartItem) => {
 
 
     cartSummaryHtml+=
-        `<div class="cart-item-container">
+        `<div class="cart-item-container js-cart-item-container">
             <div class="delivery-date">
                 Delivery date: Tuesday, June 21
             </div>
@@ -39,7 +39,7 @@ cart.forEach((cartItem) => {
                         <span class="update-quantity-link link-primary">
                             Update
                         </span>
-                        <span class="delete-quantity-link link-primary">
+                        <span class="delete-quantity-link link-primary js-delete-cart-container">
                             Delete
                         </span>
                     </div>
@@ -94,5 +94,15 @@ cart.forEach((cartItem) => {
 }); 
 document.querySelector('.js-order-summary').innerHTML=cartSummaryHtml;
 
+document.addEventListener('click', function(event) {
 
+    if (event.target.classList.contains('js-delete-cart-container')) {
+        const cartItemContainer = event.target.closest('.js-cart-item-container');
+        
+        if (cartItemContainer) {
+            cartItemContainer.remove();
+        }
+        
+    }
+});
 
